@@ -1,4 +1,4 @@
-import Joi, { ObjectSchema, ValidationResult } from 'joi';
+import { ObjectSchema } from 'joi';
 /**
  * Validates data against a given Joi schema.
  *
@@ -9,7 +9,7 @@ import Joi, { ObjectSchema, ValidationResult } from 'joi';
 type ValidateStatusResult = {
     error: boolean,
     message: string,
-    data: any
+    data: unknown
 }
 export default function validate<T>(schema: ObjectSchema<T>, data: unknown): ValidateStatusResult {
     const resultStatus: ValidateStatusResult = {

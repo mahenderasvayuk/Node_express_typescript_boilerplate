@@ -1,16 +1,15 @@
 import jwt from "jsonwebtoken";
-import { Request } from "express";
-import { generateCurrentTimeStamps, generateExprireTimestampsHours, generateExprireTimestampsDays } from "./moment";
+import { generateCurrentTimeStamps, generateExprireTimestampsHours } from "./moment";
 
 interface TokenPayload {
-    data: any
+    data: unknown
     iat?: number;
     exp?: number;
     type?: string;
     role?: string
 }
 const DEFAULT_EXPIRATION_HOURS = 12;
-const DEFAULT_EXPIRATION_DAYS = 2;
+// const DEFAULT_EXPIRATION_DAYS = 2;
 
 
 class JWTUtils {
@@ -22,7 +21,7 @@ class JWTUtils {
         if (!key) console.warn('Please define JWT_SECRET_SECRET_KEY value in env when you diploye it.Because curenlty we have used the default key for jwt toke secret');
         return key ? key : 'default_secter'
     };
-    generateToken(data: any): string {
+    generateToken(data: unknown): string {
         const tokenPayload: TokenPayload = {
             data,
             iat: generateCurrentTimeStamps(),

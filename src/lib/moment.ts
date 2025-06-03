@@ -152,7 +152,7 @@ export const diffInMinutes = (date1: Date | string, date2: Date | string) => {
 };
 
 // Validation
-export const isValidDate = (date: any) => {
+export const isValidDate = (date: Date) => {
     return moment(date).isValid();
 };
 // EXPIRE TIMESTAMPS

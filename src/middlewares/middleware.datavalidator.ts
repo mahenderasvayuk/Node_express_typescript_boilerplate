@@ -23,8 +23,8 @@ export const requestDataValidator = (schemas: ReqDataType) => {
                 }
             });
             next();
-        } catch (err: any) {
-            return responseManager.badRequest(res, err?.message, {})
+        } catch (err: unknown) {
+            return responseManager.badRequest(res, (err as Error)?.message, {})
         }
     };
 };

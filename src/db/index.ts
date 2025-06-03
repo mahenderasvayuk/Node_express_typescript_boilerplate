@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const connectToDatabase = async (url: string | undefined): Promise<void> => {
+const mongoConnect = async (url: string | undefined): Promise<void> => {
     try {
         if (!url) {
             throw new Error('MongoDB connection URL not found in .env file');
@@ -13,4 +13,5 @@ const connectToDatabase = async (url: string | undefined): Promise<void> => {
     }
 };
 
-export default connectToDatabase;
+
+export default mongoConnect;

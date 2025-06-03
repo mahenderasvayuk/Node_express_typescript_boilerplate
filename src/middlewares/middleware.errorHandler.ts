@@ -4,14 +4,14 @@ type AsyncFunction = (
     req: Request,
     res: Response,
     next: NextFunction
-) => Promise<any>;
+) => Promise<unknown>;
 
 export const asyncHandler = (fn: AsyncFunction) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             await fn(req, res, next);
-        } catch (error: any) {
-            return responseManager.error(res, error?.message, {})
+        } catch (error: unknown) {
+            return responseManager.error(res, (error as Error)?.message, {})
         }
     };
 };

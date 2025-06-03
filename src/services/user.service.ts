@@ -8,3 +8,5 @@ class UserService {
         return status
     }
 }
+
+export default new UserService();

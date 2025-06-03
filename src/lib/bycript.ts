@@ -22,8 +22,9 @@ const bcryptUtils: IBcryptUtils = {
             const salt = await bcrypt.genSalt(saltRounds);
             const hash = await bcrypt.hash(plainPassword, salt);
             return hash;
-        } catch (error) {
-            throw new Error('Error hashing password');
+        } catch (error: unknown) {
+            const err = error as Error;
+            throw new Error(`Bycript Error : ${err.message}`);
         }
     },
 
@@ -37,8 +38,9 @@ const bcryptUtils: IBcryptUtils = {
         try {
             const match = await bcrypt.compare(plainPassword, hashedPassword);
             return match;
-        } catch (error) {
-            throw new Error('Error comparing passwords');
+        } catch (error: unknown) {
+            const err = error as Error;
+            throw new Error(`Bycript Error : ${err.message}`);
         }
     },
 
@@ -49,8 +51,9 @@ const bcryptUtils: IBcryptUtils = {
     async generateSalt(): Promise<string> {
         try {
             return await bcrypt.genSalt(saltRounds);
-        } catch (error) {
-            throw new Error('Error generating salt');
+        } catch (error: unknown) {
+            const err = error as Error;
+            throw new Error(`Bycript Error : ${err.message}`);
         }
     },
 
@@ -63,8 +66,9 @@ const bcryptUtils: IBcryptUtils = {
     async hashWithSalt(plainPassword: string, salt: string): Promise<string> {
         try {
             return await bcrypt.hash(plainPassword, salt);
-        } catch (error) {
-            throw new Error('Error hashing with salt');
+        } catch (error: unknown) {
+            const err = error as Error;
+            throw new Error(`Bycript Error : ${err.message}`);
         }
     },
 
@@ -76,8 +80,9 @@ const bcryptUtils: IBcryptUtils = {
     getRounds(hashedPassword: string): number {
         try {
             return bcrypt.getRounds(hashedPassword);
-        } catch (error) {
-            throw new Error('Error getting rounds from hash');
+        } catch (error: unknown) {
+            const err = error as Error;
+            throw new Error(`Bycript Error : ${err.message}`);
         }
     },
 
